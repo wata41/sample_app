@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     # @user = User.first
     @user = User.find(params[:id])
       # => GET app/views/users/new.html.erb
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /users/new
@@ -64,15 +65,6 @@ class UsersController < ApplicationController
     end
 
     # beforeフィルタ
-
-    # ログイン済みユーザーかどうか確認
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url, status: :see_other
-      end
-    end
 
     # 正しいユーザーかどうか確認
     def correct_user
