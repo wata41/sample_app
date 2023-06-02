@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     # @user = User.first
     @user = User.find(params[:id])
       # => GET app/views/users/new.html.erb
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /users/new
