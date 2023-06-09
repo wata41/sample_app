@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   resources :users
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :account_activations, only: [:edit]
   get '/microposts', to: 'static_pages#home'
 end
